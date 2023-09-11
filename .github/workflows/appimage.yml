@@ -3,6 +3,7 @@ name: Build and publish AppImages
 env:
   UBUNTU_RELEASE: jammy
   UBUNTU_PUBKEY: 871920D1991BC93C
+  APPDIR_PATH: CustomAppDir
 
 on:
   pull_request:
@@ -37,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           platforms: ${{ matrix.platform }}
-          outputs: AppDir
+          outputs: ${{ env.APPDIR_PATH }}
           build-args: |
             UBUNTU_RELEASE
 
@@ -47,8 +48,8 @@ jobs:
         shell: bash
         run: |
           set -eua
-          . AppDir/.build-metadata.env
-          rm AppDir/.build-metadata.env
+          . "${APPDIR_PATH}/.build-metadata.env"
+          rm "${APPDIR_PATH}/.build-metadata.env"
           APPIMAGE_VERSION="${GITHUB_REF_SLUG}"
           APPIMAGE_APT_ARCH="${TARGETARCH}"
           APPIMAGE_APT_DISTRO="${UBUNTU_RELEASE}"
@@ -60,6 +61,7 @@ jobs:
         uses: AppImageCrafters/build-appimage@v1.3
         with:
           recipe: dist/AppImageBuilder.yml
+          args: --skip-test --appdir ${{ env.APPDIR_PATH }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
