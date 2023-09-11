@@ -2,11 +2,14 @@ version: 1
 
 script:
 - |
+  mv "{{APPIMAGE_SOURCE}}" "${TARGET_APPDIR}"
   icon_path="${TARGET_APPDIR}/usr/share/icons/hicolor/128x128/apps"
   mkdir -p "${icon_path}"
   cp -a dist/linuxmotehook2.png "${icon_path}"
   # Manual installation is required until fix of https://github.com/AppImageCrafters/build-appimage/issues/5
-  apt-get update && apt-get install -y --no-install-recommends squashfs-tools
+  if ! command -v mksquashfs >/dev/null; then
+    apt-get update && apt-get install -y --no-install-recommends squashfs-tools
+  fi
 
 AppDir:
   app_info:
