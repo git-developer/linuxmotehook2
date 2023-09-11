@@ -2,7 +2,6 @@ version: 1
 
 script:
 - |
-  mv "{{APPIMAGE_SOURCE}}" "${TARGET_APPDIR}"
   icon_path="${TARGET_APPDIR}/usr/share/icons/hicolor/128x128/apps"
   mkdir -p "${icon_path}"
   cp -a dist/linuxmotehook2.png "${icon_path}"
