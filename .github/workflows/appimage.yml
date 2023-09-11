@@ -61,7 +61,10 @@ jobs:
         uses: AppImageCrafters/build-appimage@v1.3
         with:
           recipe: dist/AppImageBuilder.yml
-          args: --appdir "${{ env.APPDIR_PATH }}" --skip-tests
+          args: |
+            --appdir
+            "${{ env.APPDIR_PATH }}"
+            --skip-tests
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
