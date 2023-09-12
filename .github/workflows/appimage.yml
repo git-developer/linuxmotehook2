@@ -58,9 +58,10 @@ jobs:
           printenv | grep ^APPIMAGE_ >>"${GITHUB_ENV}"
 
       - name: Build AppImage
-        uses: AppImageCrafters/build-appimage@v1.3
+        uses: git-developer/build-appimage@fix-args
         with:
           recipe: dist/AppImageBuilder.yml
+          args: --skip-tests, --appdir, "Custom AppDir"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
