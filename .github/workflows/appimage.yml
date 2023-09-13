@@ -61,7 +61,7 @@ jobs:
         uses: git-developer/build-appimage@fix-args
         with:
           recipe: dist/AppImageBuilder.yml
-          args: --skip-tests --appdir CustomAppDir
+          args: --skip-tests --appdir "Custom AppDir"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
