@@ -3,9 +3,8 @@
 ![GitHub Actions - Build Status](https://img.shields.io/github/actions/workflow/status/v1993/linuxmotehook2/meson.yml)
 [![Ko-Fi](https://img.shields.io/badge/support-Ko--Fi-brightgreen)](https://ko-fi.com/v19930312)
 
+[![AppImage](https://img.shields.io/badge/AppImage-x86__64%2FARM64-blue)](https://github.com/v1993/linuxmotehook2/releases/latest)
 [![AUR git package](https://img.shields.io/badge/aur-linuxmotehook2--git-blue)](https://aur.archlinux.org/packages/linuxmotehook2-git)
-
-**PPAs are not updated for the time being - old workflow got broken by Circle CI and I'm not very interested in recreating it with GitHub actions due to moving to Manjaro myself. Feel free to indicate that there's demand by starting a discussion.**
 
 ## Current features
 
@@ -14,15 +13,17 @@
 * Support for buttons/sticks as well as motion
 * Support for changing device orientation
 
-### Planned features - short-term
+### Planned features
 
 * GUI application to assist with calibration and configuration
-* Documentation for configuration files
-
-### Planned features - long-term
-
 * Support for reporting IR as touch (potentially useful with dolphin)
 * Support for more Wiimote extensions - if requested
+
+## Configuration
+
+No configuration file is required to get started - just run without any arguments to expose all Wiimotes with default settings.
+However, you may want one for changing port, controller orientation, or something else.
+Check out [wiki](https://github.com/v1993/linuxmotehook2/wiki) for information on how to write a configuration file.
 
 ## Quick build guide
 
@@ -39,6 +40,7 @@ meson install -C build
 ```bash
 cd linuxmotehook2
 git pull
+meson subprojects update
 meson compile -C build
 # Optional
 meson install -C build
@@ -61,6 +63,3 @@ sudo apt-get install build-essential \
     meson
 ```
 
-## Configuration
-
-Check out [wiki](https://github.com/v1993/linuxmotehook2/wiki) for information on how to write configuration file.

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=linuxmotehook2
+Exec=usr/bin/linuxmotehook2
+Icon=linuxmotehook2
+Type=Application
+Terminal=false
+Categories=Utility;
+Comment=

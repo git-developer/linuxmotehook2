@@ -32,6 +32,7 @@ namespace Linuxmotehook {
 				monitor = XWiimote.Monitor.create(true, true);
 			}
 			assert_nonnull(monitor);
+			// No need to close on unref; monitor takes care of it
 			monitor_source = new IOSource(new IOChannel.unix_new(monitor.get_fd()), IN);
 			// The following produces a warning, and it is intended
 			IOFunc cb = add_available_wiimotes;
@@ -42,9 +43,6 @@ namespace Linuxmotehook {
 		}
 
 		~Server() {
-			if (monitor_source != null)
-				monitor_source.destroy();
-
 			new LMApplication().release();
 		}
 
